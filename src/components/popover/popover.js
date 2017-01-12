@@ -492,7 +492,7 @@ MdPopoverRef.prototype._configureAriaLabelWatcher = function() {
     self._addAriaLabelToParent(labelText);
   };
 
-  if (self._config.element[0].textContent.trim().indexOf($interpolate.startSymbol()) > -1) {
+  if (self._config.element[0].textContent.trim().indexOf(this._$interpolate.startSymbol()) > -1) {
     this._ariaLabelWatcher = this._config.scope.$watch(function() {
       return self._config.element[0].textContent.trim();
     }, handlerFn);
