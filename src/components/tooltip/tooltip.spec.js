@@ -1,55 +1,64 @@
-describe('MdTooltip Component', function() {
-  var $compile, $rootScope, $material, $mdPopover;
-  var element;
+// *************************************************************************************************
+// MdTooltip Component
+// *************************************************************************************************
+
+describe('MdTooltip Component:', function() {
+
+  var $rootScope, $mdPopover, $compile;
+  var scope, element;
 
   var injectLocals = function($injector) {
-    $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
-    $material = $injector.get('$material');
     $mdPopover = $injector.get('$mdPopover');
+    $compile = $injector.get('$compile');
   };
 
   beforeEach(function() {
     module(
-      'material.components.popover',
-      'material.components.panel'
+      'material.components.tooltip',
+      'material.components.button'
     );
 
     inject(injectLocals);
+
+    scope = $rootScope.$new();
   });
 
   afterEach(function() {
-    // Make sure to remove/cleanup after each test.
     element.remove();
-    var scope = element && element.scope();
-    scope && scope.$destroy;
     element = undefined;
+    scope.$destroy();
+    scope = undefined;
   });
 
-  it('should create itself with the $mdPopover', function() {
-    spyOn($mdPopover, 'create');
+  // ***********************************************************************************************
+  // Creation
+  // ***********************************************************************************************
 
-    buildTooltip(
-      '<md-button>' +
-        'Hello' +
-        '<md-tooltip>Tooltip</md-tooltip>' +
-      '</md-button>'
-    );
+  describe('Creation:', function() {
 
-    expect($mdPopover.create).toHaveBeenCalled();
+    it('should create itself using the $mdPopover create method', function() {
+      spyOn($mdPopover, 'create');
+
+      buildComponent(
+        '<md-button>' +
+          'Test' +
+          '<md-tooltip>Test</md-tooltip>' +
+        '</md-button>'
+      );
+
+      expect($mdPopover.create).toHaveBeenCalled();
+    });
+
   });
 
-  // ******************************************************
-  // Internal Utility methods
-  // ******************************************************
+  // ***********************************************************************************************
+  // Utility methods
+  // ***********************************************************************************************
 
-  function buildTooltip(markup) {
-    element = $compile(markup)($rootScope);
-    $rootScope.testModel = {};
-
-    $rootScope.$apply();
-    $material.flushOutstandingAnimations();
-
+  function buildComponent(markup) {
+    element = $compile(markup)(scope);
     return element;
   }
+
 });
