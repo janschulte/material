@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="datepickerBasicUsage">
+<head>
+    <title>demoBasicUsage</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/node_modules/angular-messages/angular-messages.js"></script>
+    <script src="/dist/angular-material.js"></script>
+
+    <link rel="stylesheet" href="/dist/angular-material.css">
+
+    
+    <script src="script.js"></script>
+    
+    
+</head>
+
+<body>
+<md-content ng-controller="AppCtrl as ctrl" layout-padding ng-cloak>
+  <div layout-gt-xs="row">
+    <div flex-gt-xs>
+      <h4>Standard date-picker</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+
+    <div flex-gt-xs>
+      <h4>Disabled date-picker</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" disabled></md-datepicker>
+    </div>
+  </div>
+
+  <div layout-gt-xs="row">
+    <div flex-gt-xs>
+      <h4>Opening the calendar when the input is focused</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+    </div>
+
+    <div flex-gt-xs>
+      <h4>Date-picker that goes straight to the year view</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+    </div>
+  </div>
+
+  <div layout-gt-xs="row">
+    <div flex-gt-xs>
+      <h4>Custom calendar trigger</h4>
+      <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" md-is-open="ctrl.isOpen"></md-datepicker>
+      <md-button class="md-primary md-raised" ng-click="ctrl.isOpen = true">Open</md-button>
+    </div>
+  </div>
+</md-content>
+
+</body>
+</html>
